@@ -14,8 +14,9 @@ describe("Testing Router Contract", () => {
         const WETHERC20TokenContract = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         const DAIERC20TokenContract = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
         // Factory = deployment, for Router Contract
+        const factoryAddr = "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f "
         const RouterContract = await ethers.getContractFactory("Router")
-        const router = await RouterContract.deploy()    // no i/p argument
+        const router = await RouterContract.deploy(factoryAddr)    // Factory = i/p argument
         await router.deployed()                         
         // the txn responsible for deployment is finally settled
         // and now it's safe to interact with our deployed instance of the Router Contract

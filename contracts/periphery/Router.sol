@@ -15,20 +15,24 @@ contract Router is IRouter {
     constructor(address _factoryAddress) {
         factoryAddr = _factoryAddress;
     }
-
+    // _addLiquidity: helper function for addLiquidity below:
     function _addLiquidity(address tokenA, address tokenB) 
     internal returns (uint256 amountA, uint256 amountB) {
 
     }
-
+    // uses helper function
     function addLiquidity(address tokenA, address tokenB) 
     external returns (uint256 amountA, uint256 amountB) {
     // STEP # 1 - check whether the LPool for the TradingPair exists already ?
     // => run IFactory.getPair() to check the address returned
-        if(IFactory(factoryAddr).getPair(tokenA, tokenB) == address(0)) {
+        if(IFactory(factoryAddr).getTradingPair(tokenA, tokenB) == address(0)) {
             // create TradingPair contract now
-            IFactory(factoryAddr).createPair(tokenA, tokenB)
+            IFactory(factoryAddr).createTradingPair(tokenA, tokenB);
         }
+    // STEP # 2: check whether the tokens are of equal value
+    
+    // STEP # 3: actually add Liquidity now
+
     }
 }
 
